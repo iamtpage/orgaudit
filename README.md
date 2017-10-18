@@ -4,6 +4,10 @@ Assign the SpaceAuditor role to Cloud Foundry OrgAuditors.
 
 `orgaudit` assigns the SpaceAuditor role to all OrgAuditors in a Cloud Foundry Organization.
 
+**Releases:**
+
+Download a release for your platform from the [releases](https://github.com/zmb3/orgaudit/releases) page.
+
 **Usage:**
 
 Provide `orgaudit` with your system domain, a user ID and client secret, and the
@@ -33,4 +37,3 @@ $ uaac client add $CLIENT_ID \
   --authorized_grant_types client_credentials,refresh_token \
   --authorities cloud_controller.admin,scim.read,scim.write
 ```
-
