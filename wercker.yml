@@ -1,0 +1,61 @@
+box: golang
+
+build:
+  steps:
+    - wercker/setup-go-workspace
+    - script:
+        name: go test
+        code: |
+          go version
+          go env
+          go test -v -race
+    - script:
+        name: go build
+        code: |
+          GOOS=linux go build -o orgaudit-linux
+          GOOS=darwin go build -o orgaudit-darwin
+          GOOS=windows go build -o orgaudit.exe
+    - script:
+        name: write version to file
+        code: |
+          go get github.com/xchapter7x/versioning
+          export WERCKER_GITHUB_CREATE_RELEASE_ID=`versioning bump_patch`
+          export SHORT_HASH=`git rev-parse --short $WERCKER_GIT_COMMIT`
+          echo $WERCKER_GITHUB_CREATE_RELEASE_ID > orgaudit-version
+          echo $SHORT_HASH > orgaudit-commit
+    - script:
+        name: copy artifacts
+        code: |
+          cp -R ./orgaudit* ${WERCKER_OUTPUT_DIR}
+
+deploy:
+  steps:
+    - script:
+        name: set release id variable for version
+        code: |
+          export RELEASE_VERSION=`cat orgaudit-version`
+          export COMMIT_HASH=`cat orgaudit-commit`
+
+    - github-create-release:
+        token: $GITHUB_TOKEN
+        tag: $RELEASE_VERSION
+        title: orgaudit $RELEASE_VERSION - $COMMIT_HASH
+        draft: true
+
+    - github-upload-asset:
+        token: $GITHUB_TOKEN
+        file: orgaudit-darwin
+        release_id: $WERCKER_GITHUB_CREATE_RELEASE_ID
+        content-type: application/x-gzip
+
+    - github-upload-asset:
+        token: $GITHUB_TOKEN
+        file: orgaudit-linux
+        release_id: $WERCKER_GITHUB_CREATE_RELEASE_ID
+        content-type: application/x-gzip
+
+    - github-upload-asset:
+        token: $GITHUB_TOKEN
+        file: orgaudit.exe
+        release_id: $WERCKER_GITHUB_CREATE_RELEASE_ID
+        content-type: application/x-gzip
