@@ -1,0 +1,11 @@
+vendor
+ldap_test
+main
+.DS_Store
+.wercker
+brownbag
+cf-mgmt*
+*.iml
+compiled-output
+prepare-output
+vars.yml

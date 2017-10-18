@@ -1,0 +1,75 @@
+hash: 348e47b7f1d63eb81724c44a599158f4e2658bb1bc34c950a5476fc0f59511e9
+updated: 2017-05-20T10:47:50.069862591-06:00
+imports:
+- name: github.com/codegangsta/cli
+  version: 2526b57c56f30b50466c96c4133b1a4ad0f0191f
+- name: github.com/go-ldap/ldap
+  version: 8168ee085ee43257585e50c6441aadf54ecb2c9f
+- name: github.com/golang/mock
+  version: bd3c8e81be01eef76d4b503f5e687d2d1354d2d9
+  subpackages:
+  - gomock
+- name: github.com/moul/http2curl
+  version: 4e24498b31dba4683efb9d35c1c8a91e2eda28c8
+- name: github.com/op/go-logging
+  version: 970db520ece77730c7e4724c61121037378659d9
+- name: github.com/parnurzeal/gorequest
+  version: ea779001e09326d30d455dbf37bc0d08c49941a2
+- name: github.com/pkg/errors
+  version: 645ef00459ed84a119197bfb8d8205042c6df63d
+- name: github.com/xchapter7x/lo
+  version: e33b245fc7a8186582208abc2458c2691bff681c
+- name: golang.org/x/net
+  version: db8e4de5b2d6653f66aea53094624468caad15d2
+  subpackages:
+  - publicsuffix
+- name: gopkg.in/asn1-ber.v1
+  version: 4e86f4367175e39f69d9358a5f17b4dda270378d
+- name: gopkg.in/yaml.v2
+  version: a83829b6f1293c91addabc89d0571c246397bbf4
+testImports:
+- name: github.com/golang/protobuf
+  version: 3b06fc7a4cad73efce5fe6217ab6c33e7231ab4a
+  subpackages:
+  - proto
+- name: github.com/onsi/ginkgo
+  version: 77a8c1e5c40d6bb6c5eb4dd4bdce9763564f6298
+  subpackages:
+  - config
+  - internal/codelocation
+  - internal/containernode
+  - internal/failer
+  - internal/leafnodes
+  - internal/remote
+  - internal/spec
+  - internal/spec_iterator
+  - internal/specrunner
+  - internal/suite
+  - internal/testingtproxy
+  - internal/writer
+  - reporters
+  - reporters/stenographer
+  - reporters/stenographer/support/go-colorable
+  - reporters/stenographer/support/go-isatty
+  - types
+- name: github.com/onsi/gomega
+  version: 334b8f472b3af5d541c5642701c1e29e2126f486
+  subpackages:
+  - format
+  - gbytes
+  - gexec
+  - ghttp
+  - internal/assertion
+  - internal/asyncassertion
+  - internal/oraclematcher
+  - internal/testingtsupport
+  - matchers
+  - matchers/support/goraph/bipartitegraph
+  - matchers/support/goraph/edge
+  - matchers/support/goraph/node
+  - matchers/support/goraph/util
+  - types
+- name: golang.org/x/sys
+  version: 9a7256cb28ed514b4e1e5f68959914c4c28a92e0
+  subpackages:
+  - unix

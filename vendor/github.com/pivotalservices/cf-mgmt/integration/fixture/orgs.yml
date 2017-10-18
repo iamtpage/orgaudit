@@ -1,0 +1,7 @@
+orgs:
+- test1
+- test2
+protected_orgs:
+- system
+- pcfdev-org
+- p-spring-cloud-services
