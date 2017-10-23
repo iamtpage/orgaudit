@@ -12,7 +12,7 @@ build:
     - script:
         name: go build
         code: |
-          GOOS=linux go build -o orgaudit-linux
+          CGO_ENABLED=0 GOOS=linux go build -a -ldflags '-w' -o orgaudit-linux
           GOOS=darwin go build -o orgaudit-darwin
           GOOS=windows go build -o orgaudit.exe
     - script:
