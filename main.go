@@ -25,12 +25,13 @@ var (
 	userID       = kingpin.Flag("user-id", "user ID").Envar("USER_ID").Required().String()
 	clientSecret = kingpin.Flag("client-secret", "client secret").Envar("CLIENT_SECRET").Required().String()
 	org          = kingpin.Flag("org", "the name of the org").Short('o').Required().String()
+	debug        = kingpin.Flag("debug", "verbose logging").Envar("ORGAUDIT_DEBUG").Default("false").Bool()
 )
 
 func main() {
 	kingpin.Parse()
 
-	token, err := getToken("https://uaa."+*sysDomain, *userID, *clientSecret)
+	token, err := getToken("https://uaa."+*sysDomain, *userID, *clientSecret, *debug)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -75,8 +76,12 @@ func main() {
 	}
 }
 
-func getToken(uaaURL, user, secret string) (string, error) {
-	log.Println("getting token", uaaURL, user, secret)
+func getToken(uaaURL, user, secret string, debug) (string, error) {
+	
+	if debug != false {
+		log.Println("getting token", uaaURL, user, secret)
+	}
+	
 	request := gorequest.New()
 	request.TargetType = "form"
 
@@ -92,7 +97,10 @@ func getToken(uaaURL, user, secret string) (string, error) {
 	post.Send(params.Encode())
 
 	cmd, _ := post.AsCurlCommand()
-	log.Println("post:", cmd)
+	
+	if debug != false {
+		log.Println("post:", cmd)
+	}
 
 	res, body, errs := post.End()
 	if len(errs) > 0 {
