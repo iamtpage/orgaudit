@@ -91,8 +91,6 @@ func getToken(uaaURL, user, secret string) (string, error) {
 	}
 	post.Send(params.Encode())
 
-	cmd, _ := post.AsCurlCommand()
-
 	res, body, errs := post.End()
 	if len(errs) > 0 {
 		return "", errs[0]
