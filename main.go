@@ -76,7 +76,7 @@ func main() {
 }
 
 func getToken(uaaURL, user, secret string) (string, error) {
-	log.Println("getting token", uaaURL, user, secret)
+	
 	request := gorequest.New()
 	request.TargetType = "form"
 
@@ -90,9 +90,6 @@ func getToken(uaaURL, user, secret string) (string, error) {
 		"response_type": {"token"},
 	}
 	post.Send(params.Encode())
-
-	cmd, _ := post.AsCurlCommand()
-	log.Println("post:", cmd)
 
 	res, body, errs := post.End()
 	if len(errs) > 0 {
