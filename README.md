@@ -6,14 +6,14 @@ Assign the SpaceAuditor role to Cloud Foundry OrgAuditors.
 
 **Releases:**
 
-Download a release for your platform from the [releases](https://github.com/zmb3/orgaudit/releases) page.
+Download a release for your platform from the [releases](https://github.com/iamtpage/orgaudit/releases) page.
 
 **Usage:**
 
 Provide `orgaudit` with your system domain, a user ID and client secret, and the
-name of the organization to run against:
+whitelist/blacklist configuration to suite your use-case:
 
-`$ orgaudit -d local.pcfdev.io --user-id cf-mgmt --client-secret cf-mgmt-secret -o foo`
+`$ orgaudit -d local.pcfdev.io --user-id cf-orgaudit --client-secret cf-orgaudit-secret -w "org-1,org-2" -b "system,services"`
 
 The `--user-id` and `--client-secret` flags can be omitted by using the
 `USER_ID` and `CLIENT_SECRET` environment variables.
@@ -21,19 +21,19 @@ The `--user-id` and `--client-secret` flags can be omitted by using the
 **Setup:**
 
 You'll need a client ID and client secret with the appropriate scopes in order
-to perform these actions.  To create a UAA client, use the
+to perform these actions. To create a UAA client, use the
 [`uaac` Command Line](https://github.com/cloudfoundry/cf-uaac):
 
 ```
 $ CLIENT_ID=user
 $ CLIENT_SECRET=s3cr3t
-$ UAA_DOMAIN=uaa.local.pcfdev.io    # typically uaa.<system_domain>
+$ UAA_DOMAIN=uaa.local.pcfdev.io # typically uaa.<system_domain>
 
 $ uaac target $UAA_DOMAIN
 $ uaac token client get admin -s admin-client-secret
 $ uaac client add $CLIENT_ID \
-  --name $CLIENT_ID \
-  --secret $CLIENT_SECRET \
-  --authorized_grant_types client_credentials,refresh_token \
-  --authorities cloud_controller.admin,scim.read,scim.write
+--name $CLIENT_ID \
+--secret $CLIENT_SECRET \
+--authorized_grant_types client_credentials,refresh_token \
+--authorities cloud_controller.admin,scim.read,scim.write
 ```
