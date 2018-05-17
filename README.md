@@ -9,7 +9,8 @@ Assign the SpaceAuditor role to Cloud Foundry OrgAuditors.
 Download a release for your platform from the [releases](https://github.com/iamtpage/orgaudit/releases) page.
 
 **Usage:**
-Note: pre-v0.0.5 supports the `-o` option instead of `-w`/`-b`, with `-o` allowing you to specify one Org. v0.0.5+ takes all the Orgs in the foundation and allows you fine-grain control using the whitelist/blacklist functionality
+
+**Note:** pre-v0.0.5 supports the `-o` option instead of `-w`/`-b`, with `-o` allowing you to specify one Org. v0.0.5+ takes all the Orgs in the foundation and allows you fine-grain control using the whitelist/blacklist functionality
 
 Provide `orgaudit` with your system domain, a user ID and client secret, and the
 whitelist/blacklist configuration to suite your use-case:
